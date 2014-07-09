@@ -1,6 +1,8 @@
 var data = require("./products.json")
 
 //1.) The `kind` of results you're are dealing  are `shopping#products`. Go through the `items` and find all results that have `kind` of `shopping#product`. How many are there? Where else is this count information stored in the search results?
+console.log(" ")
+console.log("Question 1")
 
 var items = data['items'];
 
@@ -19,6 +21,8 @@ console.log(instances);
 
 
 //2.) Find all items with a `backorder` availability in `inventories`.
+console.log(" ")
+console.log("Question 2")
 
 for (i = 0; i < items.length; i += 1) {
 	var item = items[i];
@@ -36,39 +40,73 @@ for (i = 0; i < items.length; i += 1) {
 	}
 }
 
+//3. ) Find all items with more than one image link.
+console.log(" ")
+console.log("Question 3")
+
+for (i = 0; i < items.length; i += 1) {
+	var item = items[i];
+	var product = item["product"];
+	var images = product["images"];
+
+	if (images.length > 1) {
+		console.log(product["title"]);
+	}
+}
+
+//4.) Find all `canon` products in the items (careful with case sensitivity).
+console.log(" ")
+console.log("Question 4")
+
+for (i = 0; i < items.length; i += 1) {
+	var item = items[i];
+	var product = item["product"];
+	var brand = product["brand"];
+
+	if (brand === "Canon") {
+		console.log(product["title"]);
+	}
+}
+
+//5.) Find all `items` that have **product** **author** **name** of "eBay" and are brand "Canon".
+console.log(" ")
+console.log("Question 5")
+
+for (i = 0; i < items.length; i += 1) {
+	var item = items[i];
+	var product = item["product"];
+	var brand = product["brand"];
+
+	var author = product["author"];
+	var name = author["name"];
+
+	if (brand === "Canon" && name === "eBay") {
+		console.log(product["title"]);
+	}
+}
+
+
+// 6.) Print all the products with their **brand**, **price**, and a **image link**
+console.log(" ")
+console.log("Question 6")
+
+for (i = 0; i < items.length; i += 1) {
+	var item = items[i];
+	var product = item["product"];
+	var brand = product["brand"];
+	var images = product["images"];
+	var image0 = images[0]
+	var link = image0["link"];
+	var inventories = product["inventories"];
+	var inventory0 = inventories[0];
+	var price = inventory0["price"];
+
+	console.log(price + " " + brand + " " + product["title"] + " " + link);
+
+}
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var items = data['items'];
-
-// var instances = 0;
-
-// for (i = 0; i < items.length; i += 1) {
-// 	for (var j = 0; j < items[i].product.inventories.length; j++) {
-// 		if (items[i].product.inventories[j].availability === "backorder") {
-// 			console.log(items[i]);
-// 		}
-// 	}
-// 	instances += 1;
-// }
-
-// console.log(instances);
-// //console.log(items);
 
